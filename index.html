@@ -53,18 +53,15 @@
         .footer-text-box { margin-top: 30px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.07); font-size: 14px; line-height: 1.6; color: #e0e0ff; }
         .footer-text-box a { color: #25D366; text-decoration: none; font-weight: bold; }
         .payment-title { margin-top: 25px; font-size: 15px; color: #8f8fb3; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
-        .payment-grid { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; padding-bottom: 30px; align-items: center; }
         
-        /* অরিজিনাল পেমেন্ট লোগোর ডিজাইন */
-        .pay-logo {
-            height: 40px;
-            width: 60px;
-            background: #ffffff; /* সাদা ব্যাকগ্রাউন্ড যাতে লোগো ফুটে ওঠে */
-            padding: 5px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            object-fit: contain;
-        }
+        /* কখনোই ভাঙবে না এমন পেমেন্ট লোগো ডিজাইন (CSS) */
+        .payment-grid { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; padding-bottom: 30px; align-items: center; }
+        .pay-badge { font-size: 15px; font-weight: 900; padding: 8px 12px; border-radius: 6px; font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .bkash { background: #df146e; color: white; font-style: italic; }
+        .nagad { background: #f37021; color: white; }
+        .rocket { background: #8c1560; color: white; }
+        .dbbl { background: white; color: #1e3a8a; border: 2px solid #1e3a8a; padding: 6px 10px; }
+        .card-icon { font-size: 38px; background: white; border-radius: 5px; padding: 0 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
         /* অফ-স্ক্রিন রিসিপ্ট ডিজাইন */
         #receiptBox { position: fixed; top: -9999px; left: -9999px; width: 340px; background: #ffffff; color: #000000; padding: 25px; border-radius: 10px; font-family: Arial, sans-serif; box-sizing: border-box; }
@@ -117,17 +114,12 @@
         <div class="payment-title">Payment Option</div>
         
         <div class="payment-grid">
-            <img src="https://logo.clearbit.com/bkash.com" alt="bKash" class="pay-logo">
-            
-            <img src="https://logo.clearbit.com/nagad.com.bd" alt="Nagad" class="pay-logo">
-            
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Rocket_mobile_banking_logo.svg" onerror="this.src='https://seeklogo.com/images/D/dutch-bangla-rocket-logo-B4D104E173-seeklogo.com.png'" alt="Rocket" class="pay-logo">
-            
-            <img src="https://logo.clearbit.com/dutchbanglabank.com" alt="DBBL" class="pay-logo">
-            
-            <img src="https://logo.clearbit.com/visa.com" alt="Visa" class="pay-logo">
-            
-            <img src="https://logo.clearbit.com/mastercard.com" alt="Mastercard" class="pay-logo">
+            <div class="pay-badge bkash">bKash</div>
+            <div class="pay-badge nagad">Nagad</div>
+            <div class="pay-badge rocket">Rocket</div>
+            <div class="pay-badge dbbl">DBBL</div>
+            <i class="fa-brands fa-cc-visa card-icon" style="color: #1434cb;"></i>
+            <i class="fa-brands fa-cc-mastercard card-icon" style="color: #eb001b;"></i>
         </div>
     </div>
 
@@ -192,7 +184,7 @@
             { name: "Facebook page Follower (Real Bangladeshi)", price: 99, unit: "হাজার" },
             { name: "Facebook Personal Profile Follower (Real Bangladeshi)", price: 99, unit: "হাজার" },
             { name: "Facebook Reels/Video View (Real Organic)", price: 40, unit: "হাজার" },
-            { name: "Facebook Real ID Reaction (Love,care,Like,wow,sad,haha)", price: 70, unit: "হাজার" },
+            { name: "Facebook Real ID Reaction (Love,care,Like,wow,sad,haha)", price: 65, unit: "হাজার" },
             { name: "Facebook Custom Comments (নিজের লেখা আইডি থেকে পেস্ট)", price: 150, unit: "একশত" },
             { name: "Facebook Share", price: 49, unit: "একশত" },
             { name: "Real WatchTime 60k Minute", price: 299, unit: "প্যাকেজ" },
