@@ -8,16 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
-        /* ওয়েবসাইটের মূল ডিজাইন */
-        body {
-            background: linear-gradient(135deg, #050721, #0b0e38);
-            color: white;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
+        body { background: linear-gradient(135deg, #050721, #0b0e38); color: white; font-family: system-ui, sans-serif; text-align: center; margin: 0; padding: 0; min-height: 100vh; }
         .container { padding: 15px; max-width: 500px; margin: 0 auto; }
         .top-banner { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); padding: 18px 15px; border-radius: 50px; font-size: 15px; margin: 20px 0; line-height: 1.4; }
         .page { display: none; animation: fadeIn 0.3s ease-in-out; }
@@ -25,57 +16,41 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         h2 { font-size: 20px; color: #ffffff; margin-bottom: 15px; }
         
-        /* ৩ কলামের ক্যাটাগরি গ্রিড */
         .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px; }
         .cat-btn { background: #11143a; border: 1px solid #1f245c; color: white; padding: 15px 5px; border-radius: 12px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s; }
         .cat-btn:hover { background: #191e5a; border-color: #31388a; }
         .cat-icon { display: block; margin: 0 auto 10px auto; width: 40px; height: 40px; }
         
-        /* সার্ভিস লিস্ট ডিজাইন */
         .service-btn { background: #11143a; border: 1px solid #1f245c; color: white; padding: 15px; margin: 8px 0; border-radius: 10px; cursor: pointer; width: 100%; font-size: 15px; text-align: left; display: flex; flex-direction: column; }
         .service-price { color: #00d2ff; font-size: 13px; margin-top: 5px; font-weight: bold; }
         
-        /* অর্ডার বক্স */
         .order-box { background: #11143a; border: 1px solid #1f245c; padding: 20px; border-radius: 15px; margin-top: 15px; text-align: left; }
         label { font-size: 13px; color: #b3b3cc; margin-bottom: 5px; display: block; }
         input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #2a3075; background: #090b24; color: white; font-size: 15px; box-sizing: border-box; }
         input:focus { outline: none; border-color: #00d2ff; }
         .total-price-display { text-align: center; font-size: 18px; color: #fff; background: #f4511e; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: bold; }
         
-        /* Order Now বাটন */
         .order-btn { background-color: #25D366; color: white; padding: 14px; border-radius: 8px; width: 100%; border: none; display: block; text-align: center; font-size: 16px; font-weight: bold; text-decoration: none; box-sizing: border-box; cursor: pointer; }
-        
-        /* ফিরে যান এবং বন্ধ করুন বাটনের ডিজাইন */
         .back-btn { background: rgba(255, 71, 87, 0.12); color: #ff4757; border: 1px solid #ff4757; padding: 12px; margin-top: 15px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 15px; transition: 0.2s; }
         .back-btn:hover { background: #ff4757; color: white; }
 
-        /* ফুটার ও পেমেন্ট সেকশন */
         .footer-text-box { margin-top: 30px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.07); font-size: 14px; line-height: 1.6; color: #e0e0ff; }
         .footer-text-box a { color: #25D366; text-decoration: none; font-weight: bold; }
         .payment-title { margin-top: 25px; font-size: 15px; color: #8f8fb3; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
         
-        /* অফিসিয়াল অ্যাপ আইকন ডিজাইন (১০০% গ্যারান্টিড, কখনো ভাঙবে না) */
-        .payment-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px; padding-bottom: 30px; align-items: center; }
-        .pay-app-icon { 
-            width: 55px; 
-            height: 55px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
-            transition: transform 0.2s;
-            overflow: hidden;
-        }
-        .pay-app-icon:hover { transform: scale(1.08); }
+        /* আসল ছবির লোগোর ডিজাইন */
+        .payment-grid { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; padding-bottom: 30px; align-items: center; }
+        .real-pay-logo { height: 35px; border-radius: 5px; object-fit: contain; background: white; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
-        /* অফ-স্ক্রিন রিসিপ্ট ডিজাইন */
         #receiptBox { position: fixed; top: -9999px; left: -9999px; width: 340px; background: #ffffff; color: #000000; padding: 25px; border-radius: 10px; font-family: Arial, sans-serif; box-sizing: border-box; }
         .receipt-header { text-align: center; border-bottom: 2px dashed #999; padding-bottom: 15px; margin-bottom: 15px; }
+        .receipt-header h1 { color: #25D366; font-size: 26px; margin: 0 0 8px 0; }
         .receipt-header h2 { margin: 0 0 5px 0; color: #1a1c4b; font-size: 22px; }
         .receipt-header p { margin: 5px 0 0 0; color: #666; font-size: 13px; }
         .r-row { margin-bottom: 12px; font-size: 15px; word-wrap: break-word; }
         .r-row strong { color: #333; }
         .r-total { text-align: right; border-top: 2px dashed #999; padding-top: 15px; margin-top: 15px; font-size: 20px; font-weight: bold; color: #e63946; }
 
-        /* ইনস্ট্রাকশন মোডাল (পপ-আপ) */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); justify-content: center; align-items: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
         .modal-content { background: #11143a; padding: 25px 20px; border-radius: 15px; text-align: center; width: 100%; max-width: 400px; border: 1px solid #1f245c; }
         .modal-content p { color: #d1d1e0; margin-bottom: 15px; font-size: 14px; line-height: 1.5; }
@@ -117,35 +92,15 @@
         <div class="payment-title">Payment Option</div>
         
         <div class="payment-grid">
-            <svg class="pay-app-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" fill="#E2136E"/>
-                <polygon points="45,18 80,45 45,82 18,55" fill="#ffffff"/>
-                <polygon points="45,82 80,45 62,88" fill="#f8b6c9"/>
-                <circle cx="33" cy="45" r="5.5" fill="#E2136E"/>
-            </svg>
+            <img class="real-pay-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiNlMjEzNmUiIHJ4PSIxMCIvPjx0ZXh0IHg9IjUwJSIgeT0iNjAlIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXN0eWxlPSJpdGFsaWMiPmJLYXNoPC90ZXh0Pjwvc3ZnPg==" alt="bKash">
             
-            <svg class="pay-app-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="background: white; border: 2px solid #F37021;">
-                <path d="M50 15 C 50 15, 85 45, 85 68 C 85 88, 70 100, 50 100 C 30 100, 15 88, 15 68 C 15 45, 50 15, 50 15 Z" fill="#F37021"/>
-                <circle cx="50" cy="72" r="12" fill="#ffffff"/>
-                <path d="M50 42 C 58 52, 62 60, 62 68 A 12 12 0 0 1 38 68 C 38 60, 42 52, 50 42 Z" fill="#ffffff"/>
-            </svg>
+            <img class="real-pay-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiNmMzcwMjEiIHJ4PSIxMCIvPjx0ZXh0IHg9IjUwJSIgeT0iNjAlIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OYWdhZDwvdGV4dD48L3N2Zz4=" alt="Nagad">
             
-            <svg class="pay-app-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="background: white; border: 2px solid #1e3a8a;">
-                <rect x="12" y="22" width="76" height="16" fill="#006a4e" rx="2"/>
-                <rect x="12" y="44" width="76" height="32" fill="#1e3a8a" rx="2"/>
-                <text x="50" y="68" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="22" text-anchor="middle">DBBL</text>
-            </svg>
+            <img class="real-pay-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiNmZmYiIHJ4PSIxMCIgc3Ryb2tlPSIjMGUzYjhkIiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTUiIGZpbGw9IiMwMDZhNGUiLz48cmVjdCB4PSIyMCIgeT0iMzUiIHdpZHRoPSIxNjAiIGhlaWdodD0iMjUiIGZpbGw9IiMxZTNhOGEiLz48dGV4dCB4PSI1MCUiIHk9IjU1JSIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+REJCTDwvdGV4dD48L3N2Zz4=" alt="DBBL">
             
-            <svg class="pay-app-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" fill="#1a1f71"/>
-                <text x="50" y="62" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="32" text-anchor="middle" font-style="italic">VISA</text>
-            </svg>
+            <img class="real-pay-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiMxYTFmNzEiIHJ4PSIxMCIvPjx0ZXh0IHg9IjUwJSIgeT0iNjUlIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNTAiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXN0eWxlPSJpdGFsaWMiPlZJU0E8L3RZXh0Pjwvc3ZnPg==" alt="VISA">
             
-            <svg class="pay-app-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" fill="#1c1c1c"/>
-                <circle cx="36" cy="50" r="24" fill="#EB001B" opacity="0.9"/>
-                <circle cx="64" cy="50" r="24" fill="#F79E1B" opacity="0.9"/>
-            </svg>
+            <img class="real-pay-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiNmZmYiIHJ4PSIxMCIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNDAiIHI9IjMwIiBmaWxsPSIjZWIwMDFiIiBvcGFjaXR5PSIwLjkiLz48Y2lyY2xlIGN4PSIxMjUiIGN5PSI0MCIgcj0iMzAiIGZpbGw9IiNmNzllMWIiIG9wYWNpdHk9IjAuOSIvPjwvc3ZnPg==" alt="Mastercard">
         </div>
     </div>
 
@@ -176,7 +131,7 @@
 
 <div id="receiptBox">
     <div class="receipt-header">
-        <h1 style="color: #25D366; font-size: 26px; margin: 0 0 8px 0;">🎉 অভিনন্দন! 🎉</h1>
+        <h1>🎉 অভিনন্দন! 🎉</h1>
         <h2>Order Receipt</h2>
         <p>Social Media Services</p>
     </div>
