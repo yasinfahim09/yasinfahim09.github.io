@@ -45,36 +45,26 @@
         /* Order Now বাটন */
         .order-btn { background-color: #25D366; color: white; padding: 14px; border-radius: 8px; width: 100%; border: none; display: block; text-align: center; font-size: 16px; font-weight: bold; text-decoration: none; box-sizing: border-box; cursor: pointer; }
         
-        /* আপনার নির্দেশ মতো 'ফিরে যান' এবং 'বন্ধ করুন' বাটনের নতুন বোল্ড ও কালার ডিজাইন */
-        .back-btn { 
-            background: rgba(255, 71, 87, 0.12); 
-            color: #ff4757; 
-            border: 1px solid #ff4757; 
-            padding: 12px; 
-            margin-top: 15px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            width: 100%; 
-            font-weight: bold; /* বোল্ড টেক্সট */
-            font-size: 15px;
-            transition: 0.2s;
-        }
-        .back-btn:hover {
-            background: #ff4757;
-            color: white;
-        }
+        /* ফিরে যান এবং বন্ধ করুন বাটনের ডিজাইন */
+        .back-btn { background: rgba(255, 71, 87, 0.12); color: #ff4757; border: 1px solid #ff4757; padding: 12px; margin-top: 15px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 15px; transition: 0.2s; }
+        .back-btn:hover { background: #ff4757; color: white; }
 
         /* ফুটার ও পেমেন্ট সেকশন */
         .footer-text-box { margin-top: 30px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.07); font-size: 14px; line-height: 1.6; color: #e0e0ff; }
         .footer-text-box a { color: #25D366; text-decoration: none; font-weight: bold; }
         .payment-title { margin-top: 25px; font-size: 15px; color: #8f8fb3; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
         .payment-grid { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; padding-bottom: 30px; align-items: center; }
-        .pay-badge { font-size: 15px; font-weight: 900; padding: 8px 12px; border-radius: 6px; font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .bkash { background: #df146e; color: white; font-style: italic; }
-        .nagad { background: #f37021; color: white; }
-        .rocket { background: #8c1560; color: white; }
-        .dbbl { background: white; color: #1e3a8a; border: 2px solid #1e3a8a; padding: 6px 10px; }
-        .card-icon { font-size: 38px; background: white; border-radius: 5px; padding: 0 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        
+        /* অরিজিনাল পেমেন্ট লোগোর ডিজাইন */
+        .pay-logo {
+            height: 40px;
+            width: 60px;
+            background: #ffffff; /* সাদা ব্যাকগ্রাউন্ড যাতে লোগো ফুটে ওঠে */
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            object-fit: contain;
+        }
 
         /* অফ-স্ক্রিন রিসিপ্ট ডিজাইন */
         #receiptBox { position: fixed; top: -9999px; left: -9999px; width: 340px; background: #ffffff; color: #000000; padding: 25px; border-radius: 10px; font-family: Arial, sans-serif; box-sizing: border-box; }
@@ -125,13 +115,19 @@
         </div>
 
         <div class="payment-title">Payment Option</div>
+        
         <div class="payment-grid">
-            <div class="pay-badge bkash">bKash</div>
-            <div class="pay-badge nagad">Nagad</div>
-            <div class="pay-badge rocket">Rocket</div>
-            <div class="pay-badge dbbl">DBBL</div>
-            <i class="fa-brands fa-cc-visa card-icon" style="color: #1434cb;"></i>
-            <i class="fa-brands fa-cc-mastercard card-icon" style="color: #eb001b;"></i>
+            <img src="https://logo.clearbit.com/bkash.com" onerror="this.src='https://graph.facebook.com/bkashlimited/picture?type=large'" alt="bKash" class="pay-logo">
+            
+            <img src="https://logo.clearbit.com/nagad.com.bd" onerror="this.src='https://graph.facebook.com/myNagad/picture?type=large'" alt="Nagad" class="pay-logo">
+            
+            <img src="https://graph.facebook.com/dbblrocket/picture?type=large" onerror="this.src='https://logo.clearbit.com/dutchbanglabank.com'" alt="Rocket" class="pay-logo">
+            
+            <img src="https://logo.clearbit.com/dutchbanglabank.com" onerror="this.src='https://graph.facebook.com/DutchBanglaBank/picture?type=large'" alt="DBBL" class="pay-logo">
+            
+            <img src="https://logo.clearbit.com/visa.com" onerror="this.src='https://graph.facebook.com/Visa/picture?type=large'" alt="Visa" class="pay-logo">
+            
+            <img src="https://logo.clearbit.com/mastercard.com" onerror="this.src='https://graph.facebook.com/mastercard/picture?type=large'" alt="Mastercard" class="pay-logo">
         </div>
     </div>
 
@@ -186,7 +182,7 @@
         
         <a href="https://wa.me/8801845434763" target="_blank" class="order-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp -এ পাঠান</a>
         
-        <button class="back-btn" onclick="document.getElementById('receiptModal').style.display='none'">बंद করুন</button>
+        <button class="back-btn" onclick="document.getElementById('receiptModal').style.display='none'">বন্ধ করুন</button>
     </div>
 </div>
 
