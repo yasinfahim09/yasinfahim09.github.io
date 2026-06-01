@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Media Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
     <style>
-        /* পুরো ওয়েবসাইটের মূল ডিজাইন (আপনার প্রথম ছবির মতো গাঢ় নীল থিম) */
+        /* ওয়েবসাইটের মূল ডিজাইন */
         body {
             background: linear-gradient(135deg, #050721, #0b0e38);
             color: white;
@@ -20,7 +22,6 @@
             max-width: 500px;
             margin: 0 auto;
         }
-        /* টপ ব্যানার (ছবির মতো গোল আকৃতির) */
         .top-banner {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -46,7 +47,8 @@
             color: #ffffff;
             margin-bottom: 15px;
         }
-        /* ৩ কলামের ক্যাটাগরি গ্রিড (আপনার প্রথম স্ক্রিনশটের মতো হুবহু লেআউট) */
+        
+        /* ৩ কলামের ক্যাটাগরি গ্রিড */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -74,6 +76,7 @@
             width: 40px;
             height: 40px;
         }
+        
         /* সার্ভিস লিস্ট ডিজাইন */
         .service-btn {
             background: #11143a;
@@ -95,6 +98,7 @@
             margin-top: 5px;
             font-weight: bold;
         }
+        
         /* অর্ডার বক্স */
         .order-box {
             background: #11143a;
@@ -135,6 +139,7 @@
             margin-bottom: 15px;
             font-weight: bold;
         }
+        
         /* হোয়াটসঅ্যাপ অর্ডার বাটন */
         .order-btn {
             background-color: #25D366; 
@@ -161,7 +166,7 @@
             width: 100%;
         }
 
-        /* আপনার দেওয়া নিচের লেখা ও পেমেন্ট সেকশন */
+        /* ফুটার ও পেমেন্ট সেকশন */
         .footer-text-box {
             margin-top: 30px;
             padding: 15px;
@@ -185,21 +190,39 @@
             letter-spacing: 1px;
             font-weight: bold;
         }
+        
+        /* কখনোই ভাঙবে না এমন পেমেন্ট লোগো ডিজাইন */
         .payment-grid {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 12px;
+            margin-top: 15px;
             padding-bottom: 30px;
+            align-items: center;
         }
-        .payment-grid img {
-            width: 65px;
-            height: 38px;
-            background: white;
-            padding: 3px;
+        .pay-badge {
+            font-size: 15px;
+            font-weight: 900;
+            padding: 8px 12px;
             border-radius: 6px;
-            object-fit: contain;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .bkash { background: #df146e; color: white; font-style: italic; }
+        .nagad { background: #f37021; color: white; }
+        .rocket { background: #8c1560; color: white; }
+        .dbbl { background: white; color: #1e3a8a; border: 2px solid #1e3a8a; padding: 6px 10px; }
+        .card-icon {
+            font-size: 38px;
+            background: white;
+            border-radius: 5px;
+            padding: 0 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -244,12 +267,12 @@
 
         <div class="payment-title">Payment Option</div>
         <div class="payment-grid">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Bkash_logo.svg/256px-Bkash_logo.svg.png" alt="bKash">
-            <img src="https://raw.githubusercontent.com/yeasin50/bKash-Nagad-Rocket-DBBL-Logos/main/nagad.png" alt="Nagad">
-            <img src="https://raw.githubusercontent.com/yeasin50/bKash-Nagad-Rocket-DBBL-Logos/main/rocket.png" alt="Rocket">
-            <img src="https://raw.githubusercontent.com/yeasin50/bKash-Nagad-Rocket-DBBL-Logos/main/dbbl.png" alt="DBBL">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/256px-Visa_Inc._logo.svg.png" alt="Visa">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/256px-Mastercard-logo.svg.png" alt="Mastercard">
+            <div class="pay-badge bkash">bKash</div>
+            <div class="pay-badge nagad">Nagad</div>
+            <div class="pay-badge rocket">Rocket</div>
+            <div class="pay-badge dbbl">DBBL</div>
+            <i class="fa-brands fa-cc-visa card-icon" style="color: #1434cb;"></i>
+            <i class="fa-brands fa-cc-mastercard card-icon" style="color: #eb001b;"></i>
         </div>
     </div>
 
@@ -283,7 +306,6 @@
 </div>
 
 <script>
-    // আপনার পুরো সার্ভিসের ডাটাবেস
     const servicesData = {
         facebook: [
             { name: "Facebook page Follower (Real Bangladeshi)", price: 99, unit: "হাজার" },
@@ -372,13 +394,11 @@
         let total = qty * currentSrv.price;
         document.getElementById('totalPrice').innerText = total;
         
-        // টাইপ করার সাথে সাথে হোয়াটসঅ্যাপ লিংক ব্যাকগ্রাউন্ডে রেডি হবে (আইফোনের জন্য বেস্ট)
         let link = document.getElementById('link').value;
         let message = `নতুন অর্ডার!\n\nসার্ভিস: ${currentSrv.name}\nপরিমাণ: ${qty} ${currentSrv.unit}\nলিংক: ${link}\nমোট দাম: ৳${total}`;
         document.getElementById('whatsappOrderLink').href = "https://wa.me/8801845434763?text=" + encodeURIComponent(message);
     }
 
-    // লিংক পপুলেট করার বাড়তি নিরাপত্তা ব্যবস্থা
     document.getElementById('link').addEventListener('input', calculateTotal);
 
     function checkOrder(e) {
