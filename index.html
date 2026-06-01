@@ -44,7 +44,25 @@
         
         /* Order Now বাটন */
         .order-btn { background-color: #25D366; color: white; padding: 14px; border-radius: 8px; width: 100%; border: none; display: block; text-align: center; font-size: 16px; font-weight: bold; text-decoration: none; box-sizing: border-box; cursor: pointer; }
-        .back-btn { background: transparent; color: #a3a3c2; border: 1px solid #2a3075; padding: 10px; margin-top: 15px; border-radius: 8px; cursor: pointer; width: 100%; }
+        
+        /* আপনার নির্দেশ মতো 'ফিরে যান' এবং 'বন্ধ করুন' বাটনের নতুন বোল্ড ও কালার ডিজাইন */
+        .back-btn { 
+            background: rgba(255, 71, 87, 0.12); 
+            color: #ff4757; 
+            border: 1px solid #ff4757; 
+            padding: 12px; 
+            margin-top: 15px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-weight: bold; /* বোল্ড টেক্সট */
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: #ff4757;
+            color: white;
+        }
 
         /* ফুটার ও পেমেন্ট সেকশন */
         .footer-text-box { margin-top: 30px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.07); font-size: 14px; line-height: 1.6; color: #e0e0ff; }
@@ -58,7 +76,7 @@
         .dbbl { background: white; color: #1e3a8a; border: 2px solid #1e3a8a; padding: 6px 10px; }
         .card-icon { font-size: 38px; background: white; border-radius: 5px; padding: 0 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        /* অফ-স্ক্রিন রিসিপ্ট ডিজাইন (ছবি বানানোর জন্য) */
+        /* অফ-স্ক্রিন রিসিপ্ট ডিজাইন */
         #receiptBox { position: fixed; top: -9999px; left: -9999px; width: 340px; background: #ffffff; color: #000000; padding: 25px; border-radius: 10px; font-family: Arial, sans-serif; box-sizing: border-box; }
         .receipt-header { text-align: center; border-bottom: 2px dashed #999; padding-bottom: 15px; margin-bottom: 15px; }
         .receipt-header h2 { margin: 0; color: #1a1c4b; font-size: 24px; }
@@ -167,7 +185,8 @@
         <img id="generatedReceiptImg" src="" alt="Receipt">
         
         <a href="https://wa.me/8801845434763" target="_blank" class="order-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp -এ পাঠান</a>
-        <button class="back-btn" onclick="document.getElementById('receiptModal').style.display='none'">বন্ধ করুন</button>
+        
+        <button class="back-btn" onclick="document.getElementById('receiptModal').style.display='none'">बंद করুন</button>
     </div>
 </div>
 
