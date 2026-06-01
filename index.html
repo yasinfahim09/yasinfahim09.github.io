@@ -3,160 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media Service</title>
+    <title>Social Media Services</title>
     <style>
-        /* ওয়েবসাইটের ডিজাইন (CSS) */
+        /* ওয়েবসাইটের আধুনিক ডিজাইন (CSS) */
         body {
-            background-color: #0b0c2a; /* গাঢ় নীল ব্যাকগ্রাউন্ড */
+            background: linear-gradient(135deg, #0b0c2a, #1a1c4b);
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             text-align: center;
             margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
             padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
         }
         .page {
-            display: none; /* শুরুতে সব পেজ লুকানো থাকবে */
+            display: none; 
+            animation: fadeIn 0.4s ease-in-out;
         }
         .active {
-            display: block; /* শুধু একটিভ পেজটি দেখাবে */
+            display: block; 
         }
-        .btn {
-            background-color: #1a1c4b;
-            color: white;
-            border: 1px solid #333;
-            padding: 15px 30px;
-            margin: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 80%;
-            font-size: 16px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .btn:hover {
-            background-color: #2a2d7c;
+        h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #e0e0ff;
         }
-        .order-box {
-            background-color: #1a1c4b;
-            padding: 20px;
-            border-radius: 10px;
+        /* হোম পেজের গ্রিড ডিজাইন */
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-top: 20px;
         }
+        .cat-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 20px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .cat-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        .cat-icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        /* সার্ভিস লিস্ট বাটন */
+        .service-btn {
+            background: rgba(25, 28, 75, 0.8);
+            border: 1px solid #3d428b;
+            color: white;
+            padding: 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: 0.2s;
+        }
+        .service-btn:hover {
+            background: #2a2d7c;
+        }
+        .service-price {
+            color: #00d2ff;
+            font-size: 14px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        /* অর্ডার পেজ */
+        .order-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            text-align: left;
+        }
+        label {
+            font-size: 14px;
+            color: #b3b3cc;
+            margin-bottom: 5px;
+            display: block;
+        }
         input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
             border: none;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .total-price-display {
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+            background: #ff5722;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
         .order-btn {
-            background-color: #4CAF50; /* সবুজ বাটন */
+            background-color: #25D366; /* WhatsApp Green */
             color: white;
             padding: 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             width: 100%;
             cursor: pointer;
             font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+        .order-btn:hover {
+            background-color: #1ebe57;
         }
         .back-btn {
             background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
+            color: #a3a3c2;
+            border: 1px solid #a3a3c2;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
             cursor: pointer;
+            width: 100%;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
+<div class="container">
     <div id="homePage" class="page active">
         <h2>আপনি যে সার্ভিসটির দাম ও বিস্তারিত জানতে চান, সেটির উপর ক্লিক করুন।</h2>
-        <button class="btn" onclick="showPage('servicePage')">Facebook</button>
-        <button class="btn" onclick="alert('অন্যগুলো পরে যোগ করব!')">YouTube</button>
+        <div class="category-grid">
+            <button class="cat-btn" onclick="openCategory('facebook', 'Facebook')">
+                <span class="cat-icon">📘</span> Facebook
+            </button>
+            <button class="cat-btn" onclick="openCategory('instagram', 'Instagram')">
+                <span class="cat-icon">📸</span> Instagram
+            </button>
+            <button class="cat-btn" onclick="openCategory('youtube', 'YouTube')">
+                <span class="cat-icon">▶️</span> YouTube
+            </button>
+            <button class="cat-btn" onclick="openCategory('telegram', 'Telegram')">
+                <span class="cat-icon">✈️</span> Telegram
+            </button>
+            <button class="cat-btn" onclick="openCategory('linkedin', 'LinkedIn')">
+                <span class="cat-icon">💼</span> LinkedIn
+            </button>
+            <button class="cat-btn" onclick="openCategory('tiktok', 'TikTok')">
+                <span class="cat-icon">🎵</span> TikTok
+            </button>
+        </div>
     </div>
 
     <div id="servicePage" class="page">
-        <h2>ফেসবুক সার্ভিস</h2>
-        <p>অর্ডার কনফার্ম করতে অর্ডার করুন বাটনে ক্লিক করুন।</p>
-        <button class="btn" onclick="showOrderPage('ফেসবুক হিডেন ফলোয়ার', 25)">ফেসবুক হিডেন ফলোয়ার</button>
-        <button class="btn" onclick="showOrderPage('ফেসবুক ভিয়েতনাম ফলোয়ার', 30)">ফেসবুক ভিয়েতনাম ফলোয়ার</button>
-        <br>
-        <button class="back-btn" onclick="showPage('homePage')">ফিরে যান</button>
+        <h2 id="catTitle">সার্ভিসসমূহ</h2>
+        <div id="serviceList">
+            </div>
+        <button class="back-btn" onclick="showPage('homePage')">⬅ ফিরে যান</button>
     </div>
 
     <div id="orderPage" class="page">
-        <h2 id="serviceNameDisplay">সার্ভিস নেম</h2>
-        <p>প্রতি হাজার মাত্র <span id="pricePerThousand">0</span> টাকা।</p>
+        <h2 id="serviceNameDisplay" style="font-size: 18px; color: #fff;">সার্ভিস নেম</h2>
+        <p style="color: #00d2ff; font-size: 16px;">মূল্য: <span id="priceDisplay">0</span> টাকা</p>
         
         <div class="order-box">
-            <label>আপনি কত হাজার নিতে চান এখানে লিখুন:</label>
-            <input type="number" id="quantity" placeholder="সংখ্যা লিখুন (যেমন: 1, 2, 5)" oninput="calculateTotal()">
+            <label id="quantityLabel">আপনি কত পরিমাণ নিতে চান লিখুন:</label>
+            <input type="number" id="quantity" placeholder="সংখ্যা লিখুন..." oninput="calculateTotal()">
             
             <label>আপনার প্রোফাইল/পেইজ বা পোস্টের লিংক দিন:</label>
             <input type="text" id="link" placeholder="লিংক এখানে পেস্ট করুন...">
             
-            <h3 style="color: #00d2ff;">মোট দাম: <span id="totalPrice">0</span> টাকা</h3>
+            <div class="total-price-display">
+                মোট দাম: <strong id="totalPrice">0</strong> টাকা
+            </div>
             
             <button class="order-btn" onclick="sendToWhatsApp()">হোয়াটসঅ্যাপে অর্ডার করুন</button>
         </div>
-        <button class="back-btn" onclick="showPage('servicePage')">ফিরে যান</button>
+        <button class="back-btn" onclick="showPage('servicePage')">⬅ ফিরে যান</button>
     </div>
+</div>
 
-    <script>
-        let currentPrice = 0;
-        let currentService = "";
+<script>
+    // আপনার সব সার্ভিসের ডেটাবেস
+    const servicesData = {
+        facebook: [
+            { name: "Facebook page Follower (Real Bangladeshi)", price: 99, unitName: "হাজার" },
+            { name: "Facebook Personal Profile Follower (Real)", price: 99, unitName: "হাজার" },
+            { name: "Facebook Reels/Video View (Real Organic)", price: 40, unitName: "হাজার" },
+            { name: "Facebook Real ID Reaction (Love,care,etc)", price: 65, unitName: "হাজার" },
+            { name: "Facebook Custom Comments (Real ID)", price: 150, unitName: "একশত" },
+            { name: "Facebook Share", price: 49, unitName: "একশত" },
+            { name: "Real WatchTime 60k Minute", price: 299, unitName: "প্যাকেজ" },
+            { name: "Facebook post Comment React (Any)", price: 99, unitName: "হাজার" }
+        ],
+        instagram: [
+            { name: "Instagram Follower (Bangladeshi Real)", price: 220, unitName: "হাজার" },
+            { name: "Instagram Follower (Random Real)", price: 158, unitName: "হাজার" },
+            { name: "Instagram Like (Real Account)", price: 80, unitName: "হাজার" },
+            { name: "Instagram Video View (Real Account)", price: 70, unitName: "হাজার" },
+            { name: "Instagram Saves (Real Account)", price: 89, unitName: "হাজার" }
+        ],
+        youtube: [
+            { name: "YouTube Real Views", price: 120, unitName: "হাজার" },
+            { name: "YouTube Real Subscriber", price: 2399, unitName: "হাজার" },
+            { name: "YouTube Video Like", price: 449, unitName: "হাজার" }
+        ],
+        telegram: [
+            { name: "Telegram Real Subscriber", price: 150, unitName: "হাজার" },
+            { name: "Telegram Real Premium Subscriber (+ভিউ)", price: 250, unitName: "হাজার" },
+            { name: "Post Reaction", price: 49, unitName: "একশত" }
+        ],
+        linkedin: [
+            { name: "LinkedIn Real Follower", price: 3499, unitName: "হাজার" },
+            { name: "LinkedIn Likes", price: 1800, unitName: "হাজার" }
+        ],
+        tiktok: [
+            { name: "TikTok Follower", price: 449, unitName: "হাজার" },
+            { name: "Video Likes", price: 49, unitName: "হাজার" },
+            { name: "Video Views", price: 49, unitName: "হাজার" }
+        ]
+    };
 
-        // এক পেজ থেকে অন্য পেজে যাওয়ার ফাংশন
-        function showPage(pageId) {
-            document.getElementById('homePage').classList.remove('active');
-            document.getElementById('servicePage').classList.remove('active');
-            document.getElementById('orderPage').classList.remove('active');
-            
-            document.getElementById(pageId).classList.add('active');
+    let currentServiceObj = null;
+
+    // পেজ পরিবর্তন করার ফাংশন
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // ক্যাটাগরি ওপেন করার ফাংশন
+    function openCategory(categoryKey, categoryName) {
+        document.getElementById('catTitle').innerText = categoryName + " সার্ভিসসমূহ";
+        const listDiv = document.getElementById('serviceList');
+        listDiv.innerHTML = ''; // আগের লিস্ট মুছে ফেলা
+
+        // ক্যাটাগরি অনুযায়ী বাটন তৈরি করা
+        servicesData[categoryKey].forEach(srv => {
+            let btn = document.createElement('button');
+            btn.className = 'service-btn';
+            btn.innerHTML = `<span>${srv.name}</span> <span class="service-price">৳${srv.price} / প্রতি ${srv.unitName}</span>`;
+            btn.onclick = () => showOrderPage(srv);
+            listDiv.appendChild(btn);
+        });
+        showPage('servicePage');
+    }
+
+    // অর্ডার পেজে ডাটা পাঠানোর ফাংশন
+    function showOrderPage(serviceObj) {
+        currentServiceObj = serviceObj;
+        
+        document.getElementById('serviceNameDisplay').innerText = serviceObj.name;
+        document.getElementById('priceDisplay').innerText = `${serviceObj.price} (প্রতি ${serviceObj.unitName})`;
+        
+        // ইউনিট অনুযায়ী লেবেল পরিবর্তন
+        if(serviceObj.unitName === "হাজার") {
+            document.getElementById('quantityLabel').innerText = "কত হাজার নিতে চান? (যেমন: 1 লিখলে ১০০০, 2 লিখলে ২০০০):";
+        } else if(serviceObj.unitName === "একশত") {
+            document.getElementById('quantityLabel').innerText = "কত শত নিতে চান? (যেমন: 1 লিখলে ১০০, 2 লিখলে ২০০):";
+        } else {
+            document.getElementById('quantityLabel').innerText = "কয়টি প্যাকেজ নিতে চান?:";
         }
 
-        // অর্ডার পেজে ডাটা পাঠানোর ফাংশন
-        function showOrderPage(serviceName, price) {
-            currentService = serviceName;
-            currentPrice = price;
-            
-            document.getElementById('serviceNameDisplay').innerText = serviceName;
-            document.getElementById('pricePerThousand').innerText = price;
-            document.getElementById('quantity').value = ''; // আগের লেখা মুছে ফেলা
-            document.getElementById('link').value = '';
-            document.getElementById('totalPrice').innerText = '0';
-            
-            showPage('orderPage');
+        document.getElementById('quantity').value = ''; 
+        document.getElementById('link').value = '';
+        document.getElementById('totalPrice').innerText = '0';
+        
+        showPage('orderPage');
+    }
+
+    // দাম হিসাব করার ফাংশন
+    function calculateTotal() {
+        let qty = document.getElementById('quantity').value;
+        let total = qty * currentServiceObj.price;
+        document.getElementById('totalPrice').innerText = total;
+    }
+
+    // হোয়াটসঅ্যাপে মেসেজ পাঠানোর ফাংশন
+    function sendToWhatsApp() {
+        let qty = document.getElementById('quantity').value;
+        let link = document.getElementById('link').value;
+        let total = document.getElementById('totalPrice').innerText;
+        
+        if(qty == '' || qty <= 0 || link == '') {
+            alert("দয়া করে সঠিক পরিমাণ এবং লিংক দিন!");
+            return;
         }
 
-        // দাম হিসাব করার ফাংশন
-        function calculateTotal() {
-            let qty = document.getElementById('quantity').value;
-            let total = qty * currentPrice;
-            document.getElementById('totalPrice').innerText = total;
-        }
-
-        // হোয়াটসঅ্যাপে মেসেজ পাঠানোর ফাংশন
-        function sendToWhatsApp() {
-            let qty = document.getElementById('quantity').value;
-            let link = document.getElementById('link').value;
-            let total = document.getElementById('totalPrice').innerText;
-            
-            if(qty == '' || link == '') {
-                alert("দয়া করে সংখ্যা এবং লিংক দিন!");
-                return;
-            }
-
-            // এখানে আপনার হোয়াটসঅ্যাপ নাম্বার দিন (Country code সহ, যেমন: 8801...)
-            let phoneNumber = "8801845434763"; 
-            
-            let message = "নতুন অর্ডার!\n\nসার্ভিস: " + currentService + "\nপরিমাণ: " + qty + " হাজার\nলিংক: " + link + "\nমোট দাম: " + total + " টাকা";
-            let whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
-            
-            window.open(whatsappUrl, '_blank');
-        }
-    </script>
+        // ⚠️ আপনার হোয়াটসঅ্যাপ নাম্বার নিচে দিন ⚠️
+        let phoneNumber = "8801845434763"; 
+        
+        let message = `নতুন অর্ডার!\n\nসার্ভিস: ${currentServiceObj.name}\nপরিমাণ: ${qty} ${currentServiceObj.unitName}\nলিংক: ${link}\nমোট দাম: ৳${total}`;
+        let whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+        
+        window.open(whatsappUrl, '_blank');
+    }
+</script>
 
 </body>
 </html>
