@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Service</title>
+    <style>
+        /* ওয়েবসাইটের ডিজাইন (CSS) */
+        body {
+            background-color: #0b0c2a; /* গাঢ় নীল ব্যাকগ্রাউন্ড */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .page {
+            display: none; /* শুরুতে সব পেজ লুকানো থাকবে */
+        }
+        .active {
+            display: block; /* শুধু একটিভ পেজটি দেখাবে */
+        }
+        .btn {
+            background-color: #1a1c4b;
+            color: white;
+            border: 1px solid #333;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 80%;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #2a2d7c;
+        }
+        .order-box {
+            background-color: #1a1c4b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        .order-btn {
+            background-color: #4CAF50; /* সবুজ বাটন */
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .back-btn {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="homePage" class="page active">
+        <h2>আপনি যে সার্ভিসটির দাম ও বিস্তারিত জানতে চান, সেটির উপর ক্লিক করুন।</h2>
+        <button class="btn" onclick="showPage('servicePage')">Facebook</button>
+        <button class="btn" onclick="alert('অন্যগুলো পরে যোগ করব!')">YouTube</button>
+    </div>
+
+    <div id="servicePage" class="page">
+        <h2>ফেসবুক সার্ভিস</h2>
+        <p>অর্ডার কনফার্ম করতে অর্ডার করুন বাটনে ক্লিক করুন।</p>
+        <button class="btn" onclick="showOrderPage('ফেসবুক হিডেন ফলোয়ার', 25)">ফেসবুক হিডেন ফলোয়ার</button>
+        <button class="btn" onclick="showOrderPage('ফেসবুক ভিয়েতনাম ফলোয়ার', 30)">ফেসবুক ভিয়েতনাম ফলোয়ার</button>
+        <br>
+        <button class="back-btn" onclick="showPage('homePage')">ফিরে যান</button>
+    </div>
+
+    <div id="orderPage" class="page">
+        <h2 id="serviceNameDisplay">সার্ভিস নেম</h2>
+        <p>প্রতি হাজার মাত্র <span id="pricePerThousand">0</span> টাকা।</p>
+        
+        <div class="order-box">
+            <label>আপনি কত হাজার নিতে চান এখানে লিখুন:</label>
+            <input type="number" id="quantity" placeholder="সংখ্যা লিখুন (যেমন: 1, 2, 5)" oninput="calculateTotal()">
+            
+            <label>আপনার প্রোফাইল/পেইজ বা পোস্টের লিংক দিন:</label>
+            <input type="text" id="link" placeholder="লিংক এখানে পেস্ট করুন...">
+            
+            <h3 style="color: #00d2ff;">মোট দাম: <span id="totalPrice">0</span> টাকা</h3>
+            
+            <button class="order-btn" onclick="sendToWhatsApp()">হোয়াটসঅ্যাপে অর্ডার করুন</button>
+        </div>
+        <button class="back-btn" onclick="showPage('servicePage')">ফিরে যান</button>
+    </div>
+
+    <script>
+        let currentPrice = 0;
+        let currentService = "";
+
+        // এক পেজ থেকে অন্য পেজে যাওয়ার ফাংশন
+        function showPage(pageId) {
+            document.getElementById('homePage').classList.remove('active');
+            document.getElementById('servicePage').classList.remove('active');
+            document.getElementById('orderPage').classList.remove('active');
+            
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // অর্ডার পেজে ডাটা পাঠানোর ফাংশন
+        function showOrderPage(serviceName, price) {
+            currentService = serviceName;
+            currentPrice = price;
+            
+            document.getElementById('serviceNameDisplay').innerText = serviceName;
+            document.getElementById('pricePerThousand').innerText = price;
+            document.getElementById('quantity').value = ''; // আগের লেখা মুছে ফেলা
+            document.getElementById('link').value = '';
+            document.getElementById('totalPrice').innerText = '0';
+            
+            showPage('orderPage');
+        }
+
+        // দাম হিসাব করার ফাংশন
+        function calculateTotal() {
+            let qty = document.getElementById('quantity').value;
+            let total = qty * currentPrice;
+            document.getElementById('totalPrice').innerText = total;
+        }
+
+        // হোয়াটসঅ্যাপে মেসেজ পাঠানোর ফাংশন
+        function sendToWhatsApp() {
+            let qty = document.getElementById('quantity').value;
+            let link = document.getElementById('link').value;
+            let total = document.getElementById('totalPrice').innerText;
+            
+            if(qty == '' || link == '') {
+                alert("দয়া করে সংখ্যা এবং লিংক দিন!");
+                return;
+            }
+
+            // এখানে আপনার হোয়াটসঅ্যাপ নাম্বার দিন (Country code সহ, যেমন: 8801...)
+            let phoneNumber = "8801845434763"; 
+            
+            let message = "নতুন অর্ডার!\n\nসার্ভিস: " + currentService + "\nপরিমাণ: " + qty + " হাজার\nলিংক: " + link + "\nমোট দাম: " + total + " টাকা";
+            let whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+
+</body>
+</html>
